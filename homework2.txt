@@ -1,0 +1,387 @@
+a.    Напишите программу, которая:
+	i.     выводит фразу «Hello, Scala!» справа налево
+
+object App {
+  def main(args: Array[String]): Unit = {
+    var b = "Hello, world!"
+    println(b.reverse)
+  }
+}
+
+
+ii.     переводит всю фразу в нижний регистр
+object App {
+  def main(args: Array[String]): Unit = {
+    var b = "Hello, world!"
+    println(b.toLowerCase)
+  }
+}
+
+ iii.     удаляет символ!
+ object App {
+  def main(args: Array[String]): Unit = {
+    var b = "Hello, world!"
+    println(b.replace("!", ""))
+  }
+}
+
+ iv.     добавляет в конец фразы «and goodbye python!»
+ object App {
+  def main(args: Array[String]): Unit = {
+    var b = "Hello, world!"
+    println(b + "and goodbye python!")
+  }
+}
+
+
+b.     Напишите программу, которая вычисляет ежемесячный оклад сотрудника после вычета налогов. На вход вашей программе подается значение годового дохода до вычета налогов, размер премии – в процентах от годового дохода и компенсация питания.
+import scala.io.StdIn.readLine
+object App {
+  def main(args: Array[String]): Unit = {
+    println("Введите годовой доход:" )
+    val a = readLine().toInt
+    println("Введите размер премии:" )
+    val b = readLine().toFloat
+    println("Введите размер оплаты за питание:" )
+    val c = readLine().toInt
+    println("Eжемесячный оклад сотрудника после вычета налогов:")
+    println((a*b+a+c)*0.87)
+  }
+}
+
+
+с.     Напишите программу, которая рассчитывает для каждого сотрудника отклонение(в процентах) от среднего значения оклада на уровень всего отдела. В итоговом значении должно учитываться в большую или меньшую сторону отклоняется размер оклада. На вход вышей программе подаются все значения, аналогичные предыдущей программе, а также список со значениями окладов сотрудников отдела 100, 150, 200, 80, 120, 75.
+
+import scala.io.StdIn.readLine
+object App {
+  def main(args: Array[String]): Unit = {
+    println("Введите годовой доход:" )
+    val a = readLine().toInt
+    println("Введите размер премии:" )
+    val b = readLine().toFloat
+    println("Введите размер оплаты за питание:" )
+    val c = readLine().toInt
+    println("Eжемесячный оклад сотрудника после вычета налогов:")
+    println((a*b+a+c)*0.87)
+    val firstList = List(100, 150, 200, 80, 120, 75)
+    val avgFirstList = firstList.sum.toFloat/firstList.size.toFloat
+    if (a*100/avgFirstList > 100) println("Доход больше среднего на "+ (a*100/avgFirstList - 100) + " процента")
+    else println("Доход меньше среднего на "+ (100-a*100/avgFirstList) + " процента")
+  }
+}
+
+
+d.      Попробуйте рассчитать новую зарплату сотрудника, добавив(или отняв, если сотрудник плохо себя вел) необходимую сумму с учетом результатов прошлого задания. Добавьте его зарплату в список и вычислите значение самой высокой зарплаты и самой низкой.
+
+import scala.io.StdIn.readLine
+object App {
+  def main(args: Array[String]): Unit = {
+    println("Введите годовой доход:" )
+    val a = readLine().toInt
+    println("Введите размер премии:" )
+    val b = readLine().toFloat
+    println("Введите размер оплаты за питание:" )
+    val c = readLine().toInt
+    println("Eжемесячный оклад сотрудника после вычета налогов:")
+    println((a*b+a+c)*0.87)
+    var firstList = List(100, 150, 200, 80, 120, 75)
+    val avgFirstList = firstList.sum.toFloat/firstList.size.toFloat
+    if (a*100/avgFirstList > 100) println("Доход больше среднего на "+ (a*100/avgFirstList - 100) + " процента")
+    else println("Доход меньше среднего на "+ (100-a*100/avgFirstList) + " процента")
+    val secondList = avgFirstList :: firstList
+    val n  = firstList.max
+    val m = firstList.min
+    println(secondList)
+    println("Минимальная зарплата: " + m)
+    println("Максимальая зарплата: " + n)
+  }
+}
+
+e.     Также в вашу команду пришли два специалиста с окладами 350 и 90 тысяч рублей. Попробуйте отсортировать список сотрудников по уровню оклада от меньшего к большему.
+
+import scala.io.StdIn.readLine
+object App {
+  def main(args: Array[String]): Unit = {
+    println("Введите годовой доход:" )
+    val a = readLine().toInt
+    println("Введите размер премии:" )
+    val b = readLine().toFloat
+    println("Введите размер оплаты за питание:" )
+    val c = readLine().toInt
+    println("Eжемесячный оклад сотрудника после вычета налогов:")
+    println((a*b+a+c)*0.87)
+    val firstList = List(100, 150, 200, 80, 120, 75)
+    val avgFirstList = firstList.sum.toFloat/firstList.size.toFloat
+    if (a*100/avgFirstList > 100) println("Доход больше среднего на "+ (a*100/avgFirstList - 100) + " процента")
+    else println("Доход меньше среднего на "+ (100-a*100/avgFirstList) + " процента")
+    val secondList = avgFirstList.toInt :: firstList
+    val n  = firstList.max
+    val m = firstList.min
+    println(secondList)
+    println("Минимальная зарплата: " + m)
+    println("Максимальая зарплата: " + n)
+    val newList = 350 :: 90 :: secondList
+    val newList1 = newList.sorted
+    println(newList1)
+  }
+}
+
+
+f.     Кажется, вы взяли в вашу команду еще одного сотрудника и предложили ему оклад 130 тысяч. Вычислите самостоятельно номер сотрудника в списке так, чтобы сортировка не нарушилась и добавьте его на это место.
+
+import scala.io.StdIn.readLine
+object App {
+  def main(args: Array[String]): Unit = {
+    println("Введите годовой доход:" )
+    val a = readLine().toInt
+    println("Введите размер премии:" )
+    val b = readLine().toFloat
+    println("Введите размер оплаты за питание:" )
+    val c = readLine().toInt
+    println("Eжемесячный оклад сотрудника после вычета налогов:")
+    println((a*b+a+c)*0.87)
+    val firstList = List(100, 150, 200, 80, 120, 75)
+    val avgFirstList = firstList.sum.toFloat/firstList.size.toFloat
+    if (a*100/avgFirstList > 100) println("Доход больше среднего на "+ (a*100/avgFirstList - 100) + " процента")
+    else println("Доход меньше среднего на "+ (100-a*100/avgFirstList) + " процента")
+    val secondList = avgFirstList.toInt :: firstList
+    val n  = firstList.max
+    val m = firstList.min
+    println(secondList)
+    println("Минимальная зарплата: " + m)
+    println("Максимальая зарплата: " + n)
+    val newList = 350 :: 90 :: secondList
+    val newList1 = newList.sorted
+    println(newList1)
+    val newList2 = newList1.slice(0,6) :+ 130
+    val newList3 = newList2 :: newList1.slice(6,9)
+    println(newList3)
+  }
+}
+
+
+g.       Попробуйте вывести номера сотрудников из полученного списка, которые попадают под категорию middle. На входе программе подается «вилка» зарплаты специалистов уровня middle.
+
+import scala.io.StdIn.readLine
+object App {
+  def main(args: Array[String]): Unit = {
+    println("Введите годовой доход:" )
+    val a = readLine().toInt
+    println("Введите размер премии:" )
+    val b = readLine().toFloat
+    println("Введите размер оплаты за питание:" )
+    val c = readLine().toInt
+    println("Eжемесячный оклад сотрудника после вычета налогов:")
+    println((a*b+a+c)*0.87)
+    val firstList = List(100, 150, 200, 80, 120, 75)
+    val avgFirstList = firstList.sum.toFloat/firstList.size.toFloat
+    if (a*100/avgFirstList > 100) println("Доход больше среднего на "+ (a*100/avgFirstList - 100) + " процента")
+    else println("Доход меньше среднего на "+ (100-a*100/avgFirstList) + " процента")
+    val secondList = avgFirstList.toInt :: firstList
+    val n  = firstList.max
+    val m = firstList.min
+    println(secondList)
+    println("Минимальная зарплата: " + m)
+    println("Максимальая зарплата: " + n)
+    val newList = 350 :: 90 :: secondList
+    val newList1 = newList.sorted
+    println(newList1)
+    var newList2 = newList1.slice(0,6) :+ 130
+    newList2 = newList2 :+ newList1(6)
+    newList2 = newList2 :+ newList1(7)
+    newList2 = newList2 :+ newList1(8)
+    println(newList2)
+    println("Введите минимальный порог вилки: ")
+    val vmin = readLine().toInt
+    println("Введите максимальный порог вилки: ")
+    val vmax = readLine().toInt
+    for (i <-newList2) {
+      if ((i>=vmin) && (i<=vmax)) println(f"$i middle")
+    }
+  }
+}
+
+
+h.     Однако наступил кризис и ваши сотрудники требуют повысить зарплату. Вам необходимо проиндексировать зарплату каждого сотрудника на уровень инфляции – 7%
+
+import scala.io.StdIn.readLine
+object App {
+  def main(args: Array[String]): Unit = {
+    println("Введите годовой доход:" )
+    val a = readLine().toInt
+    println("Введите размер премии:" )
+    val b = readLine().toFloat
+    println("Введите размер оплаты за питание:" )
+    val c = readLine().toInt
+    println("Eжемесячный оклад сотрудника после вычета налогов:")
+    println((a*b+a+c)*0.87)
+    val firstList = List(100, 150, 200, 80, 120, 75)
+    val avgFirstList = firstList.sum.toFloat/firstList.size.toFloat
+    if (a*100/avgFirstList > 100) println("Доход больше среднего на "+ (a*100/avgFirstList - 100) + " процента")
+    else println("Доход меньше среднего на "+ (100-a*100/avgFirstList) + " процента")
+    val secondList = avgFirstList.toInt :: firstList
+    val n  = firstList.max
+    val m = firstList.min
+    println(secondList)
+    println("Минимальная зарплата: " + m)
+    println("Максимальая зарплата: " + n)
+    val newList = 350 :: 90 :: secondList
+    val newList1 = newList.sorted
+    println(newList1)
+    var newList2 = newList1.slice(0,6) :+ 130
+    newList2 = newList2 :+ newList1(6)
+    newList2 = newList2 :+ newList1(7)
+    newList2 = newList2 :+ newList1(8)
+    println(newList2)
+    println("Введите минимальный порог вилки: ")
+    val vmin = readLine().toInt
+    println("Введите максимальный порог вилки: ")
+    val vmax = readLine().toInt
+    for (i <-newList2) {
+      if ((i>=vmin) && (i<=vmax)) println(f"$i middle")
+    }
+
+    for (i<-newList2) println(i*1.07)
+
+  }
+}
+
+
+i.    *Ваши сотрудники остались недовольны и просят индексацию на уровень рынка. Попробуйте повторить ту же операцию, как и в предыдущем задании, но теперь вам нужно проиндексировать зарплаты на процент отклонения от среднего по рынку с учетом уровня специалиста. На вход вашей программе подается 3 значения – среднее значение зарплаты на рынке для каждого уровня специалистов(junior, middle и senior)
+
+import scala.io.StdIn.readLine
+object App {
+  def main(args: Array[String]): Unit = {
+    val newList2 = List(75, 80, 90, 100, 120, 120, 130, 150, 200, 350)
+   // println(newList2)
+    println("Введите минимальный порог вилки middle: ")
+    val vmin = readLine().toInt
+    println("Введите максимальный порог вилки middle: ")
+    val vmax = readLine().toInt
+    println("Введите среднюю зп по рынку junior: ")
+    val avg_jun = readLine().toInt
+    println("Введите среднюю зп по рынку middle: ")
+    val avg_middle = readLine().toInt
+    println("Введите среднюю зп по рынку senior: ")
+    val avg_senior = readLine().toInt
+    var middleList = List[Int]()
+    var seniorList = List[Int]()
+    var junList = List[Int]()
+    for (i<-newList2){
+      if ((i<=vmax)&&(i>=vmin)) {
+        middleList :+= i
+      }
+      else if (i>vmax){
+        seniorList :+= i
+      }
+      else junList :+= i
+    }
+    var new_price = List[Double]()
+    for (i <- seniorList) new_price +:= i+i*(1 - (seniorList.sum.toDouble/seniorList.size)/avg_senior)
+    for (i <- middleList) new_price +:= i+i*(1 - (middleList.sum.toDouble/middleList.size)/avg_middle)
+    for (i <- junList)  new_price +:= i+i*(1 - (junList.sum.toDouble/junList.size)/avg_jun)
+    new_price = new_price.sorted
+    println(new_price)
+  }
+}
+
+
+k.      *Попробуйте деанонимизировать ваших сотрудников – составьте структуру, которая позволит иметь знания о том, сколько зарабатывает каждый сотрудник(Фамилия и имя).
+
+l.     *Выведите фамилию и имя сотрудников с самой высокой и самой низкой зарплатой(только не рассказывайте им об этом факте).
+import scala.io.StdIn.readLine
+object App {
+  def main(args: Array[String]): Unit = {
+    val mapEmployee = Map("Иванов Иван" -> 75, "Петров Петр" -> 80, "Зеленина Елена" -> 90, "Сидоров Семен" -> 100, "Капелева Алена" -> 120, "Иванова Алла" -> 120, "Авдонин Андрей" -> 130, "Косаткин Андрей" -> 150, "Артуров Артур" ->200, "Воронина Алина" -> 350)
+    println(mapEmployee)
+    var maxSalary = 0
+    var minSalary: Int = 50000000
+    var nameEmployee = ""
+    var nameEmployee1 = ""
+    for ((i, j) <- mapEmployee) {
+      if (j>maxSalary) {
+        maxSalary = j
+        nameEmployee = i
+      }
+      if (j<minSalary){
+        minSalary = j
+        nameEmployee1 = i
+      }
+    }
+    println("Максимальная зарплата у: " + nameEmployee)
+    println("Минимальная зарплата у: " + nameEmployee1)
+  }
+}
+
+
+m.      *Попробуйте запутать тех, кто может случайно наткнуться на эти данные – удалите для каждого сотрудника имя, переведите строку в нижний регистр, удалите гласные и разверните оставшиеся символы справа налево(abc -> cb).
+
+import scala.io.StdIn.readLine
+object App {
+  def main(args: Array[String]): Unit = {
+    var nameEmployee = "Воронина Алина"
+    var nameEmployee1 = "Иванов Иван"
+    val rus = List("у", "е", "ё", "ы", "а", "о", "э", "я", "и", "ю")
+    val nameEmployeeVoronina = nameEmployee.indexOf(" ", 1)
+    val nameEmployeeIvanov = nameEmployee.indexOf(" ", 1)
+    nameEmployee = nameEmployee.slice(0, nameEmployeeVoronina).toLowerCase()
+    nameEmployee1 = nameEmployee1.slice(0, nameEmployeeIvanov).toLowerCase().trim
+    for (i <- rus){
+      nameEmployee = nameEmployee.replace(i, "")
+      nameEmployee1 = nameEmployee1.replace(i, "")
+    }
+    nameEmployee = nameEmployee.reverse
+    nameEmployee1 = nameEmployee1.reverse
+    print(nameEmployee)
+    println(nameEmployee1)
+
+  }
+}
+
+
+n.     *Опробуйте завернуть программу из пункта 3.b в функцию и входные значения переделать в параметры функции.
+
+import scala.io.StdIn.readLine
+object App {
+  def main(args: Array[String]): Unit = {
+    def salary(a: Int, b: Double, c: Int): Double = {
+      val salaryEmployee = (a * b + a + c) * 0.87
+      return salaryEmployee
+    }
+    println(salary(100, 0.2, 5))
+  }
+}
+
+
+o.      *Попробуйте написать функцию, которая вычисляет значение степени двойки:
+
+                                                    i.     С помощью обычной рекурсии
+
+import scala.io.StdIn.readLine
+object App {
+  def main(args: Array[String]): Unit = {
+    def power(n: Int): BigInt = {
+      if (n > 1) 2 * power(n-1)
+      else 2
+    }
+    println(power(5))
+  }
+}
+
+                                                   ii.     **С помощью хвостовой рекурсии 
+												   
+import scala.annotation.tailrec
+
+object App {
+  def main(args: Array[String]): Unit = {
+    def power(n: BigInt): BigInt = {
+      @tailrec
+      def f(q: BigInt, acc: BigInt = 2): BigInt = {
+        if (q > 1) f(q-1, acc*2)
+        else acc
+      }
+      return f(n)
+    }
+    println(power(100000))
+  }
+}
